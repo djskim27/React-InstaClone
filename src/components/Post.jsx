@@ -3,16 +3,15 @@ import Comment from './Comment';
 import styled from 'styled-components';
 import { FaHeartO, FaCommentO } from 'react-icons/lib/fa'
 
-const PostContainer = styled.div`
+const PostBox = styled.div`
   background-color: #fff;
   border-radius: 3px;
   width: 95vw;
   max-width: 600px;
   margin: 20px auto;
   border: 1px solid #e6e6e6;
-`;
-
-const PostUser = styled.div`
+`
+const User = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -26,20 +25,17 @@ const PostUser = styled.div`
     padding-left: 5px;
     font-weight: bold;
   }
-`;
-
-const PostContent = styled.div`
+`
+const PostPic = styled.div`
   img{
     max-width: 600px;
     margin: 0 auto;
   }
-`;
-
-const PostInfo = styled.div`
+`
+const ExtraStuff = styled.div`
   padding: 5px 16px;
-`;
-
-const PostActions = styled.div`
+`
+const heartsAndLikes = styled.div`
   svg{
     padding: 5px;
   }
@@ -60,24 +56,25 @@ class Post extends Component{
       }
     },"");
     return(
-      <PostContainer>
-        <PostUser>
+      <PostBox>
+        <User>
           <img src={post.user.profile_pic} alt={post.user.username} />
-          <span>{post.user.username}</span>
-        </PostUser>
-        <PostContent>
+          <p>{post.user.username}</p>
+        </User>
+        <PostPic>
           <img src={post.image.url} />
-        </PostContent>
-        <PostInfo>
-          <p>{post.caption}</p>
-          <PostActions>
-            <FaHeartO size={35} />
-            <FaCommentO size={35} />
-          </PostActions>
-          <p><strong>{likes}</strong> like this</p>
-          {post.comments.map((comment,i) => <Comment key={i} comment={comment}/>)}
-        </PostInfo>
-      </PostContainer>
+        </PostPic>
+        <ExtraStuff>
+          <p>{post.caption}</p>gi
+  
+          <heartsAndLikes>
+          <FaHeartO />
+          <FaCommentO />
+        </heartsAndLikes>
+        <p>{post.likes.length} likes</p>
+        {post.comments.map((comment,i) => <Comment key={i} comment={comment}/>)}
+        </ExtraStuff>
+      </PostBox>
     )
   }
 }

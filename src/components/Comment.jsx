@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-const CommentContainer = styled.div`
+const CommentDiv = styled.div`
   display: flex;
   align-items: center;
   img{
@@ -9,16 +9,18 @@ const CommentContainer = styled.div`
     width: 30px;
     border-radius: 100%;
   }
-`;
+`
 
 class Comment extends Component {
   render() {
     const {comment} = this.props;
     return (
-      <CommentContainer>
+      <CommentDiv>
         <img src={comment.profile_pic}/>
-        <p><strong>{comment.username}</strong>   {comment.text}</p>
-      </CommentContainer>
+        <p>
+          <strong>{comment.username}</strong>
+          {comment.text}</p>
+      </CommentDiv>
     );
   }
 }
